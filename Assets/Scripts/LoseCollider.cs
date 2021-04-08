@@ -10,6 +10,6 @@ public class LoseCollider : MonoBehaviour
     {
         //TrailRenderer _otherTrailRenderer = other.GetComponent<TrailRenderer>();
         //_otherTrailRenderer.enabled = !_otherTrailRenderer.enabled;
-        other.transform.position = new Vector2(-3.56f, 13.44f);
+        other.transform.position = new Vector2(1.17f, 13.44f);
     }
 }
