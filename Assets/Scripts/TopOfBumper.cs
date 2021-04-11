@@ -39,9 +39,11 @@ public class TopOfBumper : MonoBehaviour
         _bumperColorSprites.RemoveAt(_indexOfSameColor);
         _bumperColorSprites.Insert(0, _sameColorSprite);
 
+        /*
         foreach (Sprite sprite in _bumperColorSprites)
         {
             Debug.Log(sprite.name);
         }
+        */
     }
 }
