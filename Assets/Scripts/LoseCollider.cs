@@ -8,9 +8,11 @@ public class LoseCollider : MonoBehaviour
     [SerializeField] Ball _ball;
     BallStopper _ballStopper;
     ScoreBoard _scoreBoard;
+    AudioSource _audioSource;
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _scoreBoard = FindObjectOfType<ScoreBoard>();
         _ballStopper = FindObjectOfType<BallStopper>();
     }
@@ -18,6 +20,7 @@ public class LoseCollider : MonoBehaviour
     {
         if (other.tag == "ball")
         {
+            _audioSource.Play();
             _ballStopper.ToggleIsTrigger(true);
             _scoreBoard.DecreaseLives();
             Destroy(other.gameObject);
