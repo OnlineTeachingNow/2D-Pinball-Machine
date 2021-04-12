@@ -5,8 +5,15 @@ using UnityEngine;
 public class ClusteredColliderBumpers : MonoBehaviour
 {
     float _velocityIncreaseFactor = -10f;
+    ScoreBoard _scoreBoard;
+    int _thisBumperValue = 5;
+    private void Start()
+    {
+        _scoreBoard = FindObjectOfType<ScoreBoard>();
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
+        _scoreBoard.IncreaseScore(_thisBumperValue);
         Rigidbody2D _otherRigidBody = other.gameObject.GetComponent<Rigidbody2D>();
         if (_otherRigidBody.velocity.magnitude <= 50f)
         {

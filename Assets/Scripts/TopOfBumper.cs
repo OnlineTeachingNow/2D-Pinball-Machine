@@ -17,7 +17,7 @@ public class TopOfBumper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "The Almighty Ball")
+        if (other.tag == "ball")
         {
             Sprite _newSprite = _bumperColorSprites[Random.Range(1, 4)];
             _mySprite.sprite = _newSprite;

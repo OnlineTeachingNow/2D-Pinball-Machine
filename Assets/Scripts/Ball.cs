@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] GameObject _ballStopper;
-    [SerializeField] GameObject _launchZone;
+    BallStopper _ballStopper;
+    PolygonCollider2D _ballStopCollider;
+    Rigidbody2D _ballRigidBody;
 
-    public void PlayerLoses()
+    private void Start()
     {
-        _ballStopper.GetComponent<PolygonCollider2D>().isTrigger = true;
-        this.transform.position = _launchZone.transform.position;
-        this.GetComponent<TrailRenderer>().time = 0.3f;
+        _ballRigidBody = this.GetComponent<Rigidbody2D>();
+        _ballStopper = FindObjectOfType<BallStopper>();
+        _ballStopCollider = _ballStopper.GetComponent<PolygonCollider2D>();
+    }
+    private void Update()
+    {
+        if (_ballRigidBody.velocity.magnitude <= 0.8 && Input.GetKeyDown(KeyCode.Space) && _ballStopCollider.isTrigger)
+        {
+            _ballRigidBody.AddForce(new Vector2(1f, Random.Range(300f, 600f)));
+        }
     }
 }

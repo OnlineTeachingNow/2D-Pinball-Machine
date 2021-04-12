@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class LoseCollider : MonoBehaviour
 {
-    Ball _ball;
+    [SerializeField] GameObject _launchZone;
+    [SerializeField] Ball _ball;
+    BallStopper _ballStopper;
+    ScoreBoard _scoreBoard;
+
     private void Start()
     {
-        _ball = FindObjectOfType<Ball>();
+        _scoreBoard = FindObjectOfType<ScoreBoard>();
+        _ballStopper = FindObjectOfType<BallStopper>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<TrailRenderer>().time = 0f;
-        _ball.PlayerLoses();
+        if (other.tag == "ball")
+        {
+            _ballStopper.ToggleIsTrigger(true);
+            _scoreBoard.DecreaseLives();
+            Destroy(other.gameObject);
+            Instantiate(_ball, _launchZone.transform.position, Quaternion.identity);
+        }
     }
 }

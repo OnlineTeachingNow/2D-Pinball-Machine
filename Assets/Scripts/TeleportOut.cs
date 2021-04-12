@@ -7,7 +7,7 @@ public class TeleportOut : MonoBehaviour
     float _velocityIncrease = 30f;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "The Almighty Ball")
+        if (other.tag == "ball")
         {
             other.GetComponent<TrailRenderer>().time = 0.3f;
             float _xForce = Random.Range(-1, 1);
